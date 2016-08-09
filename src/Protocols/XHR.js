@@ -151,8 +151,17 @@ function (Logger, Helper, ES6Promise) {
                     logger.trace("URL = ", options.url);
 
                     var hXHR = null;
-
-                    if (window.XMLHttpRequest) {
+                    if ( typeof window === "undefined") {
+                        // Node JS
+                        var request = requirejs("request");
+                        request(options, function (error, response, body) {
+                            if (!error && response.statusCode == 200 && body) {
+                                resolve(body);
+                            } else {
+                                reject("Errors Occured on Http Request");
+                            }
+                        });
+                    } else if (window.XMLHttpRequest) {
 
                         logger.trace("XMLHttpRequest");
 
@@ -349,8 +358,11 @@ function (Logger, Helper, ES6Promise) {
             return this.__call(options)
                     .then( function (response) {
                         var xmlDoc;
-
-                        if (window.DOMParser) {
+                        if ( typeof window === "undefined") {
+                            // Node JS
+                            var Parser = requirejs("xmldom").DOMParser;
+                            xmlDoc = new Parser().parseFromString(response, "text/xml");
+                        } else if (window.DOMParser) {
                             var parser = new DOMParser();
                             xmlDoc = parser.parseFromString(response, "text/xml");
                         } else { // IE

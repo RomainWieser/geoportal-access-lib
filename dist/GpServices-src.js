@@ -10,7 +10,7 @@
  * copyright IGN
  * @author IGN 
  * @version 1.0.0-beta3
- * @date 2016-07-29
+ * @date 2016-08-09
  *
  */
 /*!
@@ -32,6 +32,7 @@
 }(this, function() {
 
 /* BEGIN CODE */
+var requirejs = require("requirejs");
 var log4js, loggerCfg, UtilsLoggerByDefault, UtilsHelper, promise, ProtocolsXHR, UtilsMessagesResources, ExceptionsErrorService, ProtocolsJSONP, ProtocolsProtocol, ServicesDefaultUrlService, ServicesCommonService, ServicesAltiRequestModelAltiRequest, ServicesAltiRequestModelAltiElevationRequest, ServicesAltiRequestModelAltiProfilRequest, ServicesAltiRequestAltiRequestREST, FormatsWPS, ServicesAltiRequestAltiRequestWPS, ServicesAltiRequestAltiRequestFactory, FormatsXML, ServicesAltiResponseModelAltiResponse, ServicesAltiResponseModelElevation, ServicesAltiFormatsAltiResponseReader, ServicesAltiResponseAltiResponseFactory, ServicesAltiAlti, ServicesAutoConfResponseModelAutoConfResponse, ServicesAutoConfResponseModelConstraint, ServicesAutoConfResponseModelFormat, ServicesAutoConfResponseModelLayer, ServicesAutoConfResponseModelLegend, ServicesAutoConfResponseModelMetadata, ServicesAutoConfResponseModelOriginator, ServicesAutoConfResponseModelService, ServicesAutoConfResponseModelStyle, ServicesAutoConfResponseModelTerritory, ServicesAutoConfResponseModelThematic, ServicesAutoConfResponseModelTileMatrixSet, ServicesAutoConfResponseModelTileMatrix, ServicesAutoConfResponseModelTileMatrixLimit, ServicesAutoConfFormatsAutoConfResponseReader, ServicesAutoConfResponseAutoConfResponseFactory, ServicesAutoConfAutoConf, FormatsXLSRequestHeader, FormatsXLSRequest, FormatsXLSAbstractService, FormatsXLS, FormatsXLSLocationUtilityServiceModelAddress, FormatsXLSLocationUtilityServiceGeocodeFilterExtension, FormatsXLSLocationUtilityServiceGeocodeRequest, FormatsXLSLocationUtilityServiceModelPosition, FormatsXLSLocationUtilityServiceModelPreference, FormatsXLSLocationUtilityServiceReverseGeocodeRequest, FormatsXLSLocationUtilityService, ServicesGeocodeRequestGeocodeLocation, ServicesGeocodeRequestModelStreetAddress, ServicesGeocodeRequestModelPositionOfInterest, ServicesGeocodeRequestModelCadastralParcel, ServicesGeocodeRequestModelAdministratif, ServicesGeocodeRequestDirectGeocodeRequestFactory, ServicesGeocodeResponseModelGeocodeResponse, ServicesGeocodeResponseModelGeocodedLocation, ServicesGeocodeResponseModelDirectGeocodedLocation, ServicesGeocodeFormatsDirectGeocodeResponseReader, ServicesGeocodeResponseDirectGeocodeResponseFactory, ServicesGeocodeGeocode, ServicesGeocodeRequestReverseGeocodeRequestFactory, ServicesGeocodeResponseModelReverseGeocodedLocation, ServicesGeocodeFormatsReverseGeocodeResponseReader, ServicesGeocodeResponseReverseGeocodeResponseFactory, ServicesGeocodeReverseGeocode, ServicesAutoCompleteResponseModelAutoCompleteResponse, ServicesAutoCompleteResponseModelSuggestedLocation, ServicesAutoCompleteResponseAutoCompleteResponseFactory, ServicesAutoCompleteAutoComplete, FormatsXLSRouteServiceModelRoutePlan, FormatsXLSRouteServiceDetermineRouteRequest, FormatsXLSRouteServiceRouteRequestExtension, FormatsXLSRouteService, ServicesRouteRequestRouteRequestOLS, ServicesRouteRequestModelRouteParamREST, ServicesRouteRequestRouteRequestREST, ServicesRouteRequestRouteRequestFactory, FormatsWKT, ServicesRouteResponseModelRouteResponse, ServicesRouteResponseModelRouteInstruction, ServicesRouteFormatsRouteResponseRESTReader, ServicesRouteFormatsRouteResponseOLSReader, ServicesRouteResponseRouteResponseFactory, ServicesRouteRoute, ServicesProcessIsoCurveRequestModelProcessIsoCurveParam, ServicesProcessIsoCurveRequestProcessIsoCurveRequest, ServicesProcessIsoCurveResponseModelProcessIsoCurveResponse, ServicesProcessIsoCurveFormatsProcessIsoCurveResponseReader, ServicesProcessIsoCurveResponseProcessIsoCurveResponseFactory, ServicesProcessIsoCurveProcessIsoCurve, ServicesServices, Gp;
 log4js = undefined;
 loggerCfg = {
@@ -694,7 +695,16 @@ ProtocolsXHR = function (Logger, Helper, ES6Promise) {
                     options.url = Helper.normalyzeUrl(options.url, options.data);
                 }
                 var hXHR = null;
-                if (window.XMLHttpRequest) {
+                if (typeof window === 'undefined') {
+                    var request = requirejs('request');
+                    request(options, function (error, response, body) {
+                        if (!error && response.statusCode == 200 && body) {
+                            resolve(body);
+                        } else {
+                            reject('Errors Occured on Http Request');
+                        }
+                    });
+                } else if (window.XMLHttpRequest) {
                     hXHR = new XMLHttpRequest();
                     hXHR.open(options.method, options.url, true);
                     hXHR.overrideMimeType = options.content;
@@ -780,7 +790,10 @@ ProtocolsXHR = function (Logger, Helper, ES6Promise) {
         __callXML: function (options) {
             return this.__call(options).then(function (response) {
                 var xmlDoc;
-                if (window.DOMParser) {
+                if (typeof window === 'undefined') {
+                    var Parser = requirejs('xmldom').DOMParser;
+                    xmlDoc = new Parser().parseFromString(response, 'text/xml');
+                } else if (window.DOMParser) {
                     var parser = new DOMParser();
                     xmlDoc = parser.parseFromString(response, 'text/xml');
                 } else {
@@ -1027,7 +1040,7 @@ ProtocolsProtocol = function (Helper, XHR, JSONP) {
     return Protocol;
 }(UtilsHelper, ProtocolsXHR, ProtocolsJSONP);
 ServicesDefaultUrlService = function () {
-    var protocol = location && location.protocol && location.protocol.indexOf('https:') === 0 ? 'https://' : 'http://';
+    var protocol = 'http://';
     var hostname = 'wxs.ign.fr';
     var keyname = '%KEY%';
     var url = protocol + hostname.concat('/', keyname);
@@ -7266,7 +7279,7 @@ Gp = function (XHR, Services, AltiResponse, Elevation, AutoCompleteResponse, Sug
     var scope = typeof window !== 'undefined' ? window : {};
     var Gp = scope.Gp || {
         servicesVersion: '1.0.0-beta3',
-        servicesDate: '2016-07-29',
+        servicesDate: '2016-08-09',
         extend: function (strNS, value) {
             var parts = strNS.split('.');
             var parent = this;

@@ -32,7 +32,7 @@ define([], function () {
     //
 
     // constantes internes
-    var protocol = (location && location.protocol && location.protocol.indexOf("https:") === 0 ? "https://" : "http://");
+    var protocol = "http://";
     var hostname = "wxs.ign.fr";
     var keyname = "%KEY%";
     var url = protocol + hostname.concat("/", keyname);

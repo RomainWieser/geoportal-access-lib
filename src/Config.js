@@ -1,7 +1,8 @@
 /* global requirejs */
 
 requirejs.config({
-    baseUrl : "",
+    baseUrl : __dirname,
+    nodeRequire : require,
     paths : {
         // lib external
         log4js : "../lib/external/woodman/woodman-amd", // en mode 'production', log4js : "../lib/external/empty"

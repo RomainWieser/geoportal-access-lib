@@ -196,7 +196,7 @@
                     'filePath': outputFile,
                     'prefixMode': 'camelCase',
                     'wrap': {
-                         'start': '\n/* BEGIN CODE */\n',
+                         'start': '\n/* BEGIN CODE */\nvar requirejs = require(\"requirejs\");\n',
                          'end'  : '\n/* END CODE   */\n'
                        },
                        'escodegen': {

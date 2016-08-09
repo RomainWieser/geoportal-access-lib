@@ -53,7 +53,8 @@
     "open": "0.0.5",
     "requirejs": "^2.1.20",
     "shelljs": "~0.2.6",
-    "wiredep": "~1.4.3"
+    "wiredep": "~1.4.3",
+    "xmldom": "^0.1.22"
   },
   "devDependencies": {
     "bower": "^1.4.1",
