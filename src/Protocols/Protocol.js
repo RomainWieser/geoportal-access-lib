@@ -86,6 +86,9 @@ function (Helper, XHR, JSONP) {
                 callbackSuffix : null
             };
 
+            // if Node JS : on force XHR
+            settings.protocol = ( typeof window === "undefined" ) ? "XHR" : settings.protocol;
+
             if ( options.protocol === "XHR" || options.format === "json" ) {
                 settings.wrap = false;
             } else if ( options.protocol === "JSONP" && options.format === "xml" ) {

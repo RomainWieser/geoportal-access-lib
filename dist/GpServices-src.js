@@ -10,7 +10,7 @@
  * copyright IGN
  * @author IGN 
  * @version 1.0.0-beta3
- * @date 2016-08-09
+ * @date 2016-08-11
  *
  */
 /*!
@@ -1005,6 +1005,7 @@ ProtocolsProtocol = function (Helper, XHR, JSONP) {
                 callback: null,
                 callbackSuffix: null
             };
+            settings.protocol = typeof window === 'undefined' ? 'XHR' : settings.protocol;
             if (options.protocol === 'XHR' || options.format === 'json') {
                 settings.wrap = false;
             } else if (options.protocol === 'JSONP' && options.format === 'xml') {
@@ -7279,7 +7280,7 @@ Gp = function (XHR, Services, AltiResponse, Elevation, AutoCompleteResponse, Sug
     var scope = typeof window !== 'undefined' ? window : {};
     var Gp = scope.Gp || {
         servicesVersion: '1.0.0-beta3',
-        servicesDate: '2016-08-09',
+        servicesDate: '2016-08-11',
         extend: function (strNS, value) {
             var parts = strNS.split('.');
             var parent = this;
