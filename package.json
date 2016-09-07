@@ -22,6 +22,12 @@
   "author": "geoportal-api-dev",
   "license": "CECILL-B",
   "dependencies": {
+    "requirejs": "^2.1.20",
+    "xmldom": "^0.1.22"
+  },
+  "devDependencies": {
+    "shelljs": "~0.2.6",
+    "wiredep": "~1.4.3",
     "amdclean": "^2.7.0",
     "glob": "^7.0.3",
     "groundskeeper": "^0.1.12",
@@ -51,12 +57,6 @@
     "gulp-watch": "~0.5.3",
     "minimist": "^1.1.1",
     "open": "0.0.5",
-    "requirejs": "^2.1.20",
-    "shelljs": "~0.2.6",
-    "wiredep": "~1.4.3",
-    "xmldom": "^0.1.22"
-  },
-  "devDependencies": {
     "bower": "^1.4.1",
     "chai": "3.0.0",
     "easy-amdtest": "0.1.0",
