@@ -11,10 +11,11 @@ define([
     "Services/Geocode/ReverseGeocode",
     "Services/AutoComplete/AutoComplete",
     "Services/Route/Route",
-    "Services/ProcessIsoCurve/ProcessIsoCurve"
+    "Services/ProcessIsoCurve/ProcessIsoCurve",
+    "Services/WFS/WFS"
     ],
     function (
-        Alti, AutoConf, Geocode, ReverseGeocode, AutoComplete, Route, ProcessIsoCurve
+        Alti, AutoConf, Geocode, ReverseGeocode, AutoComplete, Route, ProcessIsoCurve, WFS
     ) {
 
         "use strict";
@@ -238,6 +239,29 @@ define([
             isoCurve : function (options) {
                 var processIsoCurveService = new ProcessIsoCurve(options);
                 processIsoCurveService.call();
+            },
+
+            /**
+            * Download a set of geographical features 
+            *
+            * @method getFeature
+            * @param {Object} options - options for function call.
+            * @param {String} options.apiKey - access key to Geoportal platform, obtained [here]{@link http://professionnels.ign.fr/geoservices-ign}.
+            * @param {String} options.typeNames - Type of feature
+            * @param {Number} options.count - Maximum number of features
+            * @param {Function} options.onSuccess - callback function for getting successful service response. Takes a {@link Gp.Services.IsoCurveResponse} object as a parameter. Except if "rawResponse" is set to true.
+            * @param {Function} [options.onFailure] - callback function for handling unsuccessful service responses (timeOut, missing rights, ...). Takes a {@link Gp.Exceptions.ErrorService} object as parameter.
+            * @param {Number} [options.timeOut=0] - Number of milliseconds above which a timeOut response will be returned with onFailure callback (see above). Default value is 0 which means timeOut will not be handled.
+            * @param {String} [options.serverUrl=http://wxs.ign.fr/APIKEY/TODO] - web service URL. If used, options.apiKey parameter is ignored. Only use if you know what you're doing.
+            * @param {String} [options.protocol=JSONP] - Protocol used to handle dialog with web service. Possible values are 'JSONP' ({@link https://en.wikipedia.org/wiki/JSONP}) and 'XHR' ({@link https://en.wikipedia.org/wiki/XMLHttpRequest}). Only use if you know what you're doing.
+            * @param {String} [options.proxyURL] - proxy URL to use when requesting underlying web service in case of a XHR protocol use (see above). Ignored when options.protocol is set to default 'JSONP' value. Only use if you know what you're doing.
+            * @param {String} [options.callbackSuffix] - callback function name suffix to use in case of a JSONP protocol use (see above), to set your own suffix instead of auto-increment. Ignored when options.protocol is set to 'XHR' value. Only use if you know what you're doing.
+            * @param {String} [options.httpMethod=GET] - HTTP method to use when requesting underlying web service in case of a XHR protocol use (see above). Possible values are 'GET' and 'POST'. Ignored when options.protocol is set to default 'JSONP' value. Only use if you know what you are doing.
+            * @param {Boolean} [options.rawResponse=false] - Setting this parameter to true implies you want to handle the service response by yourself : it will be returned as an unparsed String in onSuccess callback parameter. Only use if you know what you are doing.
+            */
+            getFeature : function (options) {
+                var WFSService = new WFS(options);
+                WFSService.call();
             }
         };
 

@@ -16,6 +16,7 @@ define([], function () {
     //  DefaultUrlService.AutoConf.url(key)[aggregate]
     //  DefaultUrlService.Geocode.url(key)
     //  DefaultUrlService.Route.url(key)
+    //  DefaultUrlService.WFS.url(key)
 
     // Example :
     //
@@ -127,6 +128,10 @@ define([], function () {
                     "route-xml" : this._key["route-xml"].replace(key ? keyname : null, key)
                 };
             }
+        },
+        WFS : {
+            _key : url + "/geoportail/wfs",
+            url : fkey
         }
     };
 

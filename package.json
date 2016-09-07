@@ -2,7 +2,7 @@
   "name": "geoportal-access-lib",
   "version": "1.0.0-beta3",
   "description": "French Geoportal resources access library",
-  "main": "dist/GpServices.js",
+  "main": "target/dist/GpServices-debug.js",
   "scripts": {
     "build": "gulp build",
     "test": "gulp test",

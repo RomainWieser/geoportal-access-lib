@@ -289,6 +289,7 @@ function (
                 this.logger.trace("CommonService::onError()");
                 // error : l'objet est du type ErrorService ou Error
                 var e = error;
+                this.logger.error(e);
                 if (!(e instanceof ErrorService)) {
                     e = new ErrorService(error.message);
                 }
@@ -412,6 +413,7 @@ function (
                 /** callback des erreurs */
                 onFailure : function (e) {
                     self.logger.trace("callService::onFailure()");
+                    self.logger.error(e);
                     // on est forcement sur une erreur levée par un service !
                     e.type = ErrorService.TYPE_SRVERR;
                     error.call(self, new ErrorService(e));

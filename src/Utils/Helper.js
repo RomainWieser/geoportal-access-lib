@@ -37,10 +37,9 @@ define([], function () {
                 for (var key in params) {
                     if (params.hasOwnProperty(key)) {
                         var value = params[key];
-                        if (!value) {
-                            value = "";
+                        if (value) {
+                            tabParams.push(key + "=" + value);
                         }
-                        tabParams.push(key + "=" + value);
                     }
                 }
 
