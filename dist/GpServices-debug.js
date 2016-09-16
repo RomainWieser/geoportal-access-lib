@@ -9,8 +9,8 @@
  * copyright CeCILL-B
  * copyright IGN
  * @author IGN 
- * @version 1.0.0-beta3
- * @date 2016-08-11
+ * @version 1.0.0-beta4
+ * @date 2016-09-16
  *
  */
 /*!
@@ -33,7 +33,7 @@
 
 /* BEGIN CODE */
 var requirejs = require("requirejs");
-var log4js, loggerCfg, UtilsLoggerByDefault, UtilsHelper, promise, ProtocolsXHR, UtilsMessagesResources, ExceptionsErrorService, ProtocolsJSONP, ProtocolsProtocol, ServicesDefaultUrlService, ServicesCommonService, ServicesAltiRequestModelAltiRequest, ServicesAltiRequestModelAltiElevationRequest, ServicesAltiRequestModelAltiProfilRequest, ServicesAltiRequestAltiRequestREST, FormatsWPS, ServicesAltiRequestAltiRequestWPS, ServicesAltiRequestAltiRequestFactory, FormatsXML, ServicesAltiResponseModelAltiResponse, ServicesAltiResponseModelElevation, ServicesAltiFormatsAltiResponseReader, ServicesAltiResponseAltiResponseFactory, ServicesAltiAlti, ServicesAutoConfResponseModelAutoConfResponse, ServicesAutoConfResponseModelConstraint, ServicesAutoConfResponseModelFormat, ServicesAutoConfResponseModelLayer, ServicesAutoConfResponseModelLegend, ServicesAutoConfResponseModelMetadata, ServicesAutoConfResponseModelOriginator, ServicesAutoConfResponseModelService, ServicesAutoConfResponseModelStyle, ServicesAutoConfResponseModelTerritory, ServicesAutoConfResponseModelThematic, ServicesAutoConfResponseModelTileMatrixSet, ServicesAutoConfResponseModelTileMatrix, ServicesAutoConfResponseModelTileMatrixLimit, ServicesAutoConfFormatsAutoConfResponseReader, ServicesAutoConfResponseAutoConfResponseFactory, ServicesAutoConfAutoConf, FormatsXLSRequestHeader, FormatsXLSRequest, FormatsXLSAbstractService, FormatsXLS, FormatsXLSLocationUtilityServiceModelAddress, FormatsXLSLocationUtilityServiceGeocodeFilterExtension, FormatsXLSLocationUtilityServiceGeocodeRequest, FormatsXLSLocationUtilityServiceModelPosition, FormatsXLSLocationUtilityServiceModelPreference, FormatsXLSLocationUtilityServiceReverseGeocodeRequest, FormatsXLSLocationUtilityService, ServicesGeocodeRequestGeocodeLocation, ServicesGeocodeRequestModelStreetAddress, ServicesGeocodeRequestModelPositionOfInterest, ServicesGeocodeRequestModelCadastralParcel, ServicesGeocodeRequestModelAdministratif, ServicesGeocodeRequestDirectGeocodeRequestFactory, ServicesGeocodeResponseModelGeocodeResponse, ServicesGeocodeResponseModelGeocodedLocation, ServicesGeocodeResponseModelDirectGeocodedLocation, ServicesGeocodeFormatsDirectGeocodeResponseReader, ServicesGeocodeResponseDirectGeocodeResponseFactory, ServicesGeocodeGeocode, ServicesGeocodeRequestReverseGeocodeRequestFactory, ServicesGeocodeResponseModelReverseGeocodedLocation, ServicesGeocodeFormatsReverseGeocodeResponseReader, ServicesGeocodeResponseReverseGeocodeResponseFactory, ServicesGeocodeReverseGeocode, ServicesAutoCompleteResponseModelAutoCompleteResponse, ServicesAutoCompleteResponseModelSuggestedLocation, ServicesAutoCompleteResponseAutoCompleteResponseFactory, ServicesAutoCompleteAutoComplete, FormatsXLSRouteServiceModelRoutePlan, FormatsXLSRouteServiceDetermineRouteRequest, FormatsXLSRouteServiceRouteRequestExtension, FormatsXLSRouteService, ServicesRouteRequestRouteRequestOLS, ServicesRouteRequestModelRouteParamREST, ServicesRouteRequestRouteRequestREST, ServicesRouteRequestRouteRequestFactory, FormatsWKT, ServicesRouteResponseModelRouteResponse, ServicesRouteResponseModelRouteInstruction, ServicesRouteFormatsRouteResponseRESTReader, ServicesRouteFormatsRouteResponseOLSReader, ServicesRouteResponseRouteResponseFactory, ServicesRouteRoute, ServicesProcessIsoCurveRequestModelProcessIsoCurveParam, ServicesProcessIsoCurveRequestProcessIsoCurveRequest, ServicesProcessIsoCurveResponseModelProcessIsoCurveResponse, ServicesProcessIsoCurveFormatsProcessIsoCurveResponseReader, ServicesProcessIsoCurveResponseProcessIsoCurveResponseFactory, ServicesProcessIsoCurveProcessIsoCurve, ServicesServices, Gp;
+var log4js, loggerCfg, UtilsLoggerByDefault, UtilsHelper, promise, ProtocolsXHR, UtilsMessagesResources, ExceptionsErrorService, ProtocolsJSONP, ProtocolsProtocol, ServicesDefaultUrlService, ServicesCommonService, ServicesAltiRequestModelAltiRequest, ServicesAltiRequestModelAltiElevationRequest, ServicesAltiRequestModelAltiProfilRequest, ServicesAltiRequestAltiRequestREST, FormatsWPS, ServicesAltiRequestAltiRequestWPS, ServicesAltiRequestAltiRequestFactory, FormatsXML, ServicesAltiResponseModelAltiResponse, ServicesAltiResponseModelElevation, ServicesAltiFormatsAltiResponseReader, ServicesAltiResponseAltiResponseFactory, ServicesAltiAlti, ServicesAutoConfResponseModelAutoConfResponse, ServicesAutoConfResponseModelConstraint, ServicesAutoConfResponseModelFormat, ServicesAutoConfResponseModelLayer, ServicesAutoConfResponseModelLegend, ServicesAutoConfResponseModelMetadata, ServicesAutoConfResponseModelOriginator, ServicesAutoConfResponseModelService, ServicesAutoConfResponseModelStyle, ServicesAutoConfResponseModelTerritory, ServicesAutoConfResponseModelThematic, ServicesAutoConfResponseModelTileMatrixSet, ServicesAutoConfResponseModelTileMatrix, ServicesAutoConfResponseModelTileMatrixLimit, ServicesAutoConfFormatsAutoConfResponseReader, ServicesAutoConfResponseAutoConfResponseFactory, ServicesAutoConfAutoConf, FormatsXLSRequestHeader, FormatsXLSRequest, FormatsXLSAbstractService, FormatsXLS, FormatsXLSLocationUtilityServiceModelAddress, FormatsXLSLocationUtilityServiceGeocodeFilterExtension, FormatsXLSLocationUtilityServiceGeocodeRequest, FormatsXLSLocationUtilityServiceModelPosition, FormatsXLSLocationUtilityServiceModelPreference, FormatsXLSLocationUtilityServiceReverseGeocodeRequest, FormatsXLSLocationUtilityService, ServicesGeocodeRequestGeocodeLocation, ServicesGeocodeRequestModelStreetAddress, ServicesGeocodeRequestModelPositionOfInterest, ServicesGeocodeRequestModelCadastralParcel, ServicesGeocodeRequestModelAdministratif, ServicesGeocodeRequestDirectGeocodeRequestFactory, ServicesGeocodeResponseModelGeocodeResponse, ServicesGeocodeResponseModelGeocodedLocation, ServicesGeocodeResponseModelDirectGeocodedLocation, ServicesGeocodeFormatsDirectGeocodeResponseReader, ServicesGeocodeResponseDirectGeocodeResponseFactory, ServicesGeocodeGeocode, ServicesGeocodeRequestReverseGeocodeRequestFactory, ServicesGeocodeResponseModelReverseGeocodedLocation, ServicesGeocodeFormatsReverseGeocodeResponseReader, ServicesGeocodeResponseReverseGeocodeResponseFactory, ServicesGeocodeReverseGeocode, ServicesAutoCompleteResponseModelAutoCompleteResponse, ServicesAutoCompleteResponseModelSuggestedLocation, ServicesAutoCompleteResponseAutoCompleteResponseFactory, ServicesAutoCompleteAutoComplete, FormatsXLSRouteServiceModelRoutePlan, FormatsXLSRouteServiceDetermineRouteRequest, FormatsXLSRouteServiceRouteRequestExtension, FormatsXLSRouteService, ServicesRouteRequestRouteRequestOLS, ServicesRouteRequestModelRouteParamREST, ServicesRouteRequestRouteRequestREST, ServicesRouteRequestRouteRequestFactory, FormatsWKT, ServicesRouteResponseModelRouteResponse, ServicesRouteResponseModelRouteInstruction, ServicesRouteFormatsRouteResponseRESTReader, ServicesRouteFormatsRouteResponseOLSReader, ServicesRouteResponseRouteResponseFactory, ServicesRouteRoute, ServicesProcessIsoCurveRequestModelProcessIsoCurveParam, ServicesProcessIsoCurveRequestProcessIsoCurveRequest, ServicesProcessIsoCurveResponseModelProcessIsoCurveResponse, ServicesProcessIsoCurveFormatsProcessIsoCurveResponseReader, ServicesProcessIsoCurveResponseProcessIsoCurveResponseFactory, ServicesProcessIsoCurveProcessIsoCurve, ServicesWFSWFS, ServicesServices, Gp;
 (function (rootRequire) {
     log4js = function () {
         var requirejs, require, define;
@@ -2670,10 +2670,9 @@ UtilsHelper = function () {
                 for (var key in params) {
                     if (params.hasOwnProperty(key)) {
                         var value = params[key];
-                        if (!value) {
-                            value = '';
+                        if (value) {
+                            tabParams.push(key + '=' + value);
                         }
-                        tabParams.push(key + '=' + value);
                     }
                 }
                 myParams = tabParams.join('&');
@@ -3747,6 +3746,10 @@ ServicesDefaultUrlService = function () {
                     'route-xml': this._key['route-xml'].replace(key ? keyname : null, key)
                 };
             }
+        },
+        WFS: {
+            _key: url + '/geoportail/wfs',
+            url: fkey
         }
     };
     return DefaultUrlService;
@@ -3864,6 +3867,7 @@ ServicesCommonService = function (Logger, Helper, _, Protocol, ErrorService, Def
             function onError(error) {
                 this.logger.trace('CommonService::onError()');
                 var e = error;
+                this.logger.error(e);
                 if (!(e instanceof ErrorService)) {
                     e = new ErrorService(error.message);
                 }
@@ -3934,6 +3938,7 @@ ServicesCommonService = function (Logger, Helper, _, Protocol, ErrorService, Def
                 },
                 onFailure: function (e) {
                     self.logger.trace('callService::onFailure()');
+                    self.logger.error(e);
                     e.type = ErrorService.TYPE_SRVERR;
                     error.call(self, new ErrorService(e));
                 },
@@ -10028,7 +10033,72 @@ ServicesProcessIsoCurveProcessIsoCurve = function (Logger, _, ErrorService, Comm
     };
     return ProcessIsoCurve;
 }(UtilsLoggerByDefault, UtilsMessagesResources, ExceptionsErrorService, ServicesCommonService, ServicesDefaultUrlService, ServicesProcessIsoCurveRequestProcessIsoCurveRequest, ServicesProcessIsoCurveResponseProcessIsoCurveResponseFactory);
-ServicesServices = function (Alti, AutoConf, Geocode, ReverseGeocode, AutoComplete, Route, ProcessIsoCurve) {
+ServicesWFSWFS = function (Logger, _, Helper, ErrorService, CommonService, DefaultUrlService) {
+    function WFS(options) {
+        if (!(this instanceof WFS)) {
+            throw new TypeError(_.getMessage('CLASS_CONSTRUCTOR', 'WFS'));
+        }
+        this.CLASSNAME = 'WFS';
+        CommonService.apply(this, arguments);
+        this.logger = Logger.getLogger('Gp.Services.WFS');
+        this.logger.trace('[Constructeur WFS(options)]');
+        if (!options.typeNames) {
+            throw new Error(_.getMessage('PARAM_MISSING', 'typeNames'));
+        }
+        if (typeof options.BBOX !== 'undefined') {
+            if (!options.BBOX.left) {
+                throw new Error(_.getMessage('PARAM_MISSING', 'BBOX.left'));
+            }
+            if (!options.BBOX.bottom) {
+                throw new Error(_.getMessage('PARAM_MISSING', 'BBOX.bottom'));
+            }
+            if (!options.BBOX.right) {
+                throw new Error(_.getMessage('PARAM_MISSING', 'BBOX.right'));
+            }
+            if (!options.BBOX.top) {
+                throw new Error(_.getMessage('PARAM_MISSING', 'BBOX.top'));
+            }
+        }
+        this.options.typeNames = options.typeNames;
+        this.options.featureID = options.featureID;
+        this.options.WFSoutputFormat = options.WFSoutputFormat || 'json';
+        this.options.propertyName = options.propertyName;
+        this.options.sortBy = options.sortBy;
+        this.options.count = options.count;
+        this.options.srsName = options.srsName;
+        this.options.BBOX = options.BBOX;
+    }
+    WFS.prototype = Object.create(CommonService.prototype, {});
+    WFS.prototype.constructor = WFS;
+    WFS.prototype.buildRequest = function (error, success) {
+        if (typeof this.options.BBOX !== 'undefined') {
+            this.options.BBOX = this.options.BBOX.left + ',' + this.options.BBOX.bottom + ',' + this.options.BBOX.right + ',' + this.options.BBOX.top;
+        }
+        this.request = Helper.normalyzeParameters({
+            request: 'GetFeature',
+            service: 'WFS',
+            version: '2.0.0',
+            outputFormat: this.options.WFSoutputFormat,
+            BBOX: this.options.BBOX,
+            srsName: this.options.srsName,
+            typeNames: this.options.typeNames,
+            featureID: this.options.featureID,
+            sortBy: this.options.sortBy,
+            count: this.options.count,
+            propertyName: this.options.propertyName
+        });
+        success.call(this, this.request);
+    };
+    WFS.prototype.analyzeResponse = function (error, success) {
+        if (this.response) {
+            success.call(this, this.response);
+        } else {
+            error.call(this, new ErrorService(_.getMessage('SERVICE_RESPONSE_EMPTY')));
+        }
+    };
+    return WFS;
+}(UtilsLoggerByDefault, UtilsMessagesResources, UtilsHelper, ExceptionsErrorService, ServicesCommonService, ServicesDefaultUrlService);
+ServicesServices = function (Alti, AutoConf, Geocode, ReverseGeocode, AutoComplete, Route, ProcessIsoCurve, WFS) {
     var Services = {
         getConfig: function (options) {
             var autoconfService = new AutoConf(options);
@@ -10057,18 +10127,22 @@ ServicesServices = function (Alti, AutoConf, Geocode, ReverseGeocode, AutoComple
         isoCurve: function (options) {
             var processIsoCurveService = new ProcessIsoCurve(options);
             processIsoCurveService.call();
+        },
+        getFeature: function (options) {
+            var WFSService = new WFS(options);
+            WFSService.call();
         }
     };
     var point = {};
     var circle = {};
     var bbox = {};
     return Services;
-}(ServicesAltiAlti, ServicesAutoConfAutoConf, ServicesGeocodeGeocode, ServicesGeocodeReverseGeocode, ServicesAutoCompleteAutoComplete, ServicesRouteRoute, ServicesProcessIsoCurveProcessIsoCurve);
+}(ServicesAltiAlti, ServicesAutoConfAutoConf, ServicesGeocodeGeocode, ServicesGeocodeReverseGeocode, ServicesAutoCompleteAutoComplete, ServicesRouteRoute, ServicesProcessIsoCurveProcessIsoCurve, ServicesWFSWFS);
 Gp = function (XHR, Services, AltiResponse, Elevation, AutoCompleteResponse, SuggestedLocation, GetConfigResponse, Constraint, Format, Layer, Legend, Metadata, Originator, Service, Style, Territory, Thematic, TM, TMLimit, TMS, GeocodeResponse, GeocodedLocation, DirectGeocodedLocation, ReverseGeocodedLocation, IsoCurveResponse, RouteResponse, RouteInstruction, Error) {
     var scope = typeof window !== 'undefined' ? window : {};
     var Gp = scope.Gp || {
-        servicesVersion: '1.0.0-beta3',
-        servicesDate: '2016-08-11',
+        servicesVersion: '1.0.0-beta4',
+        servicesDate: '2016-09-16',
         extend: function (strNS, value) {
             var parts = strNS.split('.');
             var parent = this;
