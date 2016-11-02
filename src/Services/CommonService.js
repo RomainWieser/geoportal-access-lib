@@ -134,7 +134,7 @@ function (
                 this.options[opt] = options[opt];
             }
         }
-
+        this.logger.trace("Proxy " + this.options.proxy);
         // #####################
         // analyse des options
         // #####################
